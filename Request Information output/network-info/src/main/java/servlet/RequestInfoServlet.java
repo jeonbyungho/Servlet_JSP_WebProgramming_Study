@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Enumeration;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -30,8 +31,8 @@ public class RequestInfoServlet extends HttpServlet{
 		out.print("<body>");
 		
 		// 네트워크 관련 요청 정보
-		out.print("<ul>");
 		out.print("<h3>네트워크 관련 요청 정보</h3>");
+		out.print("<ul>");
 		out.print("<li> 요청 스킴 : " + req.getScheme() + "</li>");
 		out.print("<li> 서버 이름 : " + req.getServerName() + "</li>");
 		out.print("<li> 서버 주소 : " + req.getLocalAddr() + "</li>");
@@ -42,8 +43,8 @@ public class RequestInfoServlet extends HttpServlet{
 		out.print("</ul>");
 		
 		// URI, Method, Protocol 정보
-		out.print("<ul>");
 		out.print("<h3>요청 방식과 프로토콜 정보</h3>");
+		out.print("<ul>");
 		out.print("<li> 요청 방식 : " + req.getMethod() + "</li>");
 		out.print("<li> 요청 URI : " + req.getRequestURI() + "</li>");
 		out.print("<li> 요청 URL : " + req.getRequestURL().toString() + "</li>");
@@ -53,8 +54,8 @@ public class RequestInfoServlet extends HttpServlet{
 		out.print("</ul>");
 		
 		// 요청 헤더의 모든 정보
-		out.print("<ul>");
 		out.print("<h3>요청 헤더 정보</h3>");
+		out.print("<ul>");
 		
 		Enumeration<String> em = req.getHeaderNames();
 		while(em.hasMoreElements()) {
@@ -64,6 +65,16 @@ public class RequestInfoServlet extends HttpServlet{
 			out.print("</li>");
 		}
 		
+		out.print("</ul>");
+		
+		// 서블릿 컨텍스트 정보
+		ServletContext sc = this.getServletContext();
+		
+		out.print("<h3>웹 애플리케이션 정보</h3>");
+		out.print("<ul>");
+		out.print("<li> 서블릿 버전 : " + sc.getMajorVersion() + "</li>");
+		out.print("<li> 웹 애플레이케이션 이름 : " + sc.getServletContextName() + "</li>");
+		out.print("<li> 웹 애플레이케이션 경로 : " + sc.getContextPath() + "</li>");
 		out.print("</ul>");
 		
 		out.print("</bdoy></html>");
