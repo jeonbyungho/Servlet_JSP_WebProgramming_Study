@@ -20,7 +20,8 @@ public class App {
         System.out.println("● 검색할 유저 이름을 적어주세요.");
         Scanner scanner = new Scanner(System.in);
         String userid = scanner.nextLine().trim();
-
+        scanner.close();
+        
         try{
             InputStream inputStream = Resources.getResourceAsStream(res);
             sessionFactory =  new SqlSessionFactoryBuilder().build(inputStream);
