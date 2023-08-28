@@ -7,14 +7,6 @@ public class Member {
     private String name;
     private String gender;
     private String phone;
-    
-    public Member(String id, String pwd, String name, String gender, String phone) {
-        this.id = id;
-        this.pwd = pwd;
-        this.name = name;
-        this.gender = gender;
-        this.phone = phone;
-    }
 
     public String getId() {
         return id;
